@@ -1,0 +1,227 @@
+<!DOCTYPE HTML>
+<!--
+	Arcana 1.5 by HTML5 Up!
+	html5up.net | @n33co
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Dr. Khalid BOUZEKRI</title>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<meta name="description" content="" />
+		<meta name="keywords" content="" />
+		<link href="http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,300italic,700" rel="stylesheet" />
+		<noscript><link rel="stylesheet" href="css/5grid/core.css" /><link rel="stylesheet" href="css/5grid/core-desktop.css" /><link rel="stylesheet" href="css/5grid/core-1200px.css" /><link rel="stylesheet" href="css/5grid/core-noscript.css" /><link rel="stylesheet" href="css/style.css" /><link rel="stylesheet" href="css/style-desktop.css" /></noscript>
+		<script src="css/5grid/jquery.js"></script>
+		<script src="css/5grid/init.js?use=mobile,desktop,1000px&amp;mobileUI=1&amp;mobileUI_theme=none&amp;mobileUI_titleBarHeight=60&amp;mobileUI_openerWidth=52"></script>
+		<!--[if IE 9]><link rel="stylesheet" href="css/style-ie9.css" /><![endif]-->
+		<script type="text/javascript" src="jquery-1.9.1.js"></script>
+		
+	<style>
+		.textbox{
+			width:100%;
+			height:35px;
+			float: left;
+			border-radius: 5px;
+			-moz-border-radius: 5px;
+			-webkit-border-radius: 5px;
+			border: 1px solid #efefef;
+			-moz-box-shadow: 3px 3px 2px #888;
+			-webkit-box-shadow: 3px 3px 2px #888;
+			box-shadow: 3px 3px 2px #888;
+		}
+	</style>
+	
+	<script type="application/javascript">
+	var val="";
+	$(function(){
+	$("#submit").click(function(){
+	
+	//alert("ggggg");
+	
+	$("#register").find(".textbox").each(function(){
+	
+	val=val+'&'+$(this).attr('id')+'='+$(this).val();
+	
+	});
+	 
+	  var yohoAPI = "http://krititech.com/demos/smile/insert_newuser.php?jsoncallback=?"+val;
+	  $.getJSON( yohoAPI, {
+	    tags: "mount rainier",
+	    tagmode: "any",
+	    format: "json"
+	  })
+	  .done(function( data ) {
+	  
+	  
+	  
+	     var statusval=data.items;
+		 if(statusval==1)
+		 {
+		 //document.location.href="submit1.html";
+		 }
+		 else
+		 {
+		  "Please try again.";
+		 }
+		 
+	    $("#register").find(".textbox").each(function(){
+	
+	$(this).val('');
+	
+	});
+	  });
+	
+	});
+	});
+	
+	</script>
+
+	
+	
+	</head>
+	<body>
+
+		<!-- Header -->
+
+			<div id="header-wrapper">
+				<header class="5grid-layout" id="site-header">
+					<div class="row">
+						<div class="12u">
+							<div id="logo">
+								<h1 class="mobileUI-site-name" >Dr. Khalid BOUZEKRI <span style="float:right;text-align:right; font-size:14px;">English</span></h1>
+								
+							</div>
+							<nav class="mobileUI-site-nav" id="site-nav">
+								<ul>
+									<li class="current_page_item"><a href="index.html">Homepage</a></li>
+									<li><a href="review.html">Customer Reviews</a></li>
+									<li><a href="gallery.html">Photo Gallery</a></li>
+									<li><a href="appointment.html">Appointment</a></li>
+									<li><a href="contact.html">Contact Us</a></li>
+									
+								</ul>
+							</nav>
+						</div>
+					</div>
+				</header>
+			</div>
+
+		<!-- Main -->
+
+			<div id="main-wrapper" class="subpage">
+				<div class="wrapper wrapper-style4">
+				<article id="contact" style="border:none;">
+					<header>
+						<h2>Get in touch with us!</h2>
+						
+					</header>
+					<div class="5grid">
+						<div class="row">
+							<div class="12u">
+								<form  id="register">
+									<div class="5grid">
+										<div class="row">
+											<div class="12u">
+												<input type="text" name="name" id="name" placeholder="Name" class="textbox" />
+											</div>
+											
+										</div>
+										<div class="row">
+											<div class="12u">
+												<input type="text" name="firstname" id="fname" placeholder="First Name" class="textbox" />
+											</div>
+											
+										</div>
+										<div class="row">
+											<div class="12u">
+												<input type="text" name="address" id="address" placeholder="Address" class="textbox" />
+											</div>
+											
+										</div>
+										<div class="row">
+											<div class="12u">
+												<input type="text" name="zipcode" id="zipcode" placeholder="Zipcode" class="textbox" />
+											</div>
+											
+										</div>
+										<div class="row">
+											<div class="12u">
+												<input type="text" name="city" id="city" placeholder="City" class="textbox" />
+											</div>
+											
+										</div>
+										<div class="row">
+											<div class="12u">
+												<input type="text" name="phone" id="phone" placeholder="Phone" class="textbox" />
+											</div>
+											
+										</div>
+										<div class="row">
+											<div class="12u">
+												<input type="text" name="email" id="email" placeholder="Email" class="textbox"/>
+											</div>
+										</div>
+										
+										<div class="row">
+											<div class="12u">
+												<input type="text" name="message" id="message" placeholder="Message" class="textbox" style="height: 60px;"/>
+											</div>
+										</div>
+										<div class="row">
+											<div class="12u">
+												<input type="button" id="submit" class="button" value="Send Message" />
+											</div>
+										</div>
+										
+									</div>
+								</form>
+								
+						<div class="row">
+							<div class="12u">
+								<div class="highlight-box">
+									<h2 style="font-size:20px; ">At any time, you can contact us.</h2>
+									<span>
+									      <strong>Address:</strong><span style="color:#4e90e6;">  81, Avenue Allal Ben Abdellah 
+</span><br/>
+									      <strong>&nbsp;</strong> <span style="color:#4e90e6;">Rabat MOROCCO 10000</span><br/>
+									      
+									</span>
+								</div>
+							</div>
+							</div>
+						</div>
+							
+						<div class="row">
+							<div class="12u">
+								<div class="divider divider-top"></div>
+							</div>
+						</div>	
+						
+						
+					</div>
+					
+				</article>
+			</div>
+			</div>
+
+		<!-- Footer -->
+
+			<div id="footer-wrapper" >
+				<footer class="5grid-layout" id="site-footer" >
+					
+					
+					<div class="row">
+						<div class="12u">
+							<div id="copyright">
+								 My Dentist Ver 1.3  
+
+							</div>
+						</div>
+					</div>
+				</footer>
+			</div>
+
+
+	</body>
+</html>
