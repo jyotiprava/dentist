@@ -29,6 +29,158 @@
 			box-shadow: 3px 3px 2px #888;
 		}
 	</style>
+	<link rel="stylesheet" type="text/css" media="all" href="jsDatePick_ltr.min.css" />
+
+	<script type="text/javascript" src="jsDatePick.full.1.3.js"></script>
+	<script type="text/javascript">
+	window.onload = function(){
+	
+	
+	g_globalObject = new JsDatePick({
+						useMode:2,
+						isStripped:true,
+						target:"stdt",
+						dateFormat:"%Y-%m-%d",
+						cellColorScheme:"armygreen"
+					});
+					
+					g_globalObject.setOnSelectedDelegate(function(){
+						var obj = g_globalObject.getSelectedDay();
+						document.getElementById('stdt').value=obj.year+'-'+obj.month+'-'+obj.day;
+						get_time();
+					});
+	
+		};
+	
+	</script>
+	<script src="jquery-1.9.1.js"></script>
+	<script type="application/javascript">
+	$(function(){
+			
+	  var flickerAPI ="http://50.56.237.229/smile/smile/phpfiles/fetch_service.php?jsoncallback=?";
+	  $.getJSON( flickerAPI, {
+	    tags: "mount rainier",
+	    tagmode: "any",
+	    format: "json"
+	  })
+	  .done(function( data ) {
+			//alert(data);
+	    $.each( data.items, function( i, it ) {
+			//alert(it.desc);
+		 $('#service').append($('<option>').text(it.desc).attr('value', it.id));
+			});
+	  
+	    });
+		
+		$('#service').change(function(){
+			var service=$(this).val();
+			var serv="http://50.56.237.229/smile/smile/phpfiles/fetch_duration.php?jsoncallback=?";
+			$.getJSON( serv, {
+					servs: service,
+					tagmode: "any",
+					format: "json"
+					
+					})
+			.done(function(data){
+					//alert(data.items);
+					$('#duration').val(data.items);
+					});
+			});
+	$('#stdt').on("propertychange, change, keyup, paste, input", function(){
+			alert(4);
+			});
+			
+		
+	 });
+	
+	</script>
+	<script type="application/javascript">
+	function get_time()
+	{
+		var dt=$('#stdt').val();
+		var duration=$('#duration').val();
+	  var flickerAPI ="http://50.56.237.229/smile/smile/phpfiles/fetch_time.php?jsoncallback=?&dt="+dt+"&dr="+duration;
+	  $.getJSON( flickerAPI, {
+	    tags: "mount rainier",
+	    tagmode: "any",
+	    format: "json"
+	  })
+	  .done(function( data ) {
+	    $.each( data.items, function( i, it ) {
+			//alert("aaaaaa");
+		$('#timeslot').html(it.description);
+			});
+	  
+	    });
+		
+	 }
+	</script>
+	<script type="application/javascript">
+	function asdf(val1, val2) {
+	//alert(val1);
+	var val="";
+	var qwe=val1;
+	document.getElementById(val2).checked=true;
+	$("#submit").click(function(){
+	
+	//alert("ggggg");
+	
+	$("#register").find(".textbox").each(function(){
+	
+	val=val+'&'+$(this).attr('id')+'='+$(this).val();
+	
+	});
+	//var result = val.slice( 1 );
+	 //alert(val);
+	 
+	  var yohoAPI = "http://50.56.237.229/smile/smile/phpfiles/insert_appointment.php?jsoncallback=?"+val+"&da="+qwe;
+	  $.getJSON( yohoAPI, {
+	    tags: "mount rainier",
+	    tagmode: "any",
+	    format: "json"
+	  })
+	
+	  
+	  .done(function( data ) {
+	  
+	     var statusval=data.items;
+		 if(statusval==1)
+		 {
+		 "Thank you for appointment.";
+		 }
+		 else
+		 {
+		  "Please try again.";
+		 }
+		 
+	    $("#register").find(".textbox").each(function(){
+	
+	$(this).val('');
+	
+	});
+	    
+	
+	});
+	
+	});
+	}
+	</script>
+	<style>
+		.button1{
+		display: inline-block;
+		box-shadow: inset 0px 0px 0px 1px #48d3FF, 0px 2px 3px 0px rgba(0,0,0,0.25);
+		border: solid 1px #0893cf;
+		border-radius: 6px;
+		padding: 0.45em 1.1em 0.5em 1.1em;
+		color: #fff;
+		font-size: 0.8em;
+		text-decoration: none;
+		text-shadow: -1px -1px 0 rgba(0,0,0,0.5);
+		outline: 0;
+		white-space: nowrap;
+		margin-top: 2%;
+		}
+	</style>
 	</head>
 	<body>
 
@@ -66,22 +218,68 @@
 						<h2>Book An Appointment</h2>
 						
 					</header>
-					<div class="5grid" style="height: 240px;">
+					<div class="5grid" style="height:auto;">
 						<div class="row">
 							<div class="12u">
-								<form method="post" action="appointment1.html">
+								<form id="register">
 									<div class="5grid">
 										<div class="row">
 											<div class="12u">
-												<input type="text" name="name" id="name" placeholder="Choose Date" class="textbox" />
+												<input type="text" name="fname" id="fname" placeholder="Name" class="textbox" />
+											</div>
+										</div>
+										<div class="row">
+											<div class="12u">
+												<input type="text" name="address" id="address" placeholder="Address" class="textbox" style="height: 60px;"/>
+											</div>
+										</div>
+										<div class="row">
+											<div class="12u">
+												<input type="text" name="cntct" id="contact" placeholder="Contact No" class="textbox" />
+											</div>
+										</div>
+										<div class="row">
+											<div class="12u">
+												<input type="text" name="email" id="email" placeholder="Email" class="textbox"/>
+											</div>
+										</div>
+										<div class="row">
+											<div class="12u">
+												<select id="service" class="textbox" style="background: #ffffff;">
+													<option>--select value--</option>
+												</select>
+											</div>
+										</div>
+										<div class="row">
+											<div class="12u">
+												<input type="text" name="duration" id="duration"  class="textbox"  readonly=""/>
+											</div>
+										</div>
+										<div class="row">
+											<div class="12u">
+												<input type="text" name="stdt" id="stdt" placeholder="Choose Date" class="textbox" />
 											</div>
 											
 										</div>
-										
-										
+										<div class="row" >
+											<h4>Booked An Appointment</h4>
+											<div class="12u" > 
+												<span style="width: 50%; float:left; margin-top: -5px;"><span style="width:20px; height: 20px; float: left; margin-top: 7px; background: green; margin-right: 5px;"></span>Available</span>
+												<span style=" width: 50%; float:left; margin-top: -5px;"><span style="width:20px; height: 20px; float: left; margin-top: 7px; background:red; margin-right: 5px;"></span>Booked</span>
+											</div>
+											
+										</div>
 										<div class="row">
-											<div class="12u">
-												<input type="submit" class="button" value="Submit"  />
+											<div class="12u" style="width:100%;" id="timeslot">
+												
+											</div>
+											
+											
+										</div>
+										
+										<div style="width:100%; height:auto; float:left; margin-top: 2%;">
+											<div  style="width: 100%; height:auto; float:left;">
+												<input type="button" class="button" value="Submit" id="submit" />
 											</div>
 										</div>
 										
