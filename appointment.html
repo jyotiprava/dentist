@@ -29,30 +29,19 @@
 			box-shadow: 3px 3px 2px #888;
 		}
 	</style>
-	<link rel="stylesheet" type="text/css" media="all" href="jsDatePick_ltr.min.css" />
+	 <link rel="stylesheet" href="jquery.ui.datepicker.mobile.css" /> 
+  <script src="jQuery.ui.datepicker.js"></script>
+  <script src="jquery.ui.datepicker.mobile.js"></script>
+  <script>
+  //reset type=date inputs to text
+ $(function(){
+	//$( "#date" ).datepicker( "option", "dateFormat", "yy-mm-dd" );
+  $( document ).bind( "mobileinit", function(){
+    $.mobile.page.prototype.options.degradeInputs.date = true;
+    });
 
-	<script type="text/javascript" src="jsDatePick.full.1.3.js"></script>
-	<script type="text/javascript">
-	window.onload = function(){
-	
-	
-	g_globalObject = new JsDatePick({
-						useMode:2,
-						isStripped:true,
-						target:"stdt",
-						dateFormat:"%Y-%m-%d",
-						cellColorScheme:"armygreen"
-					});
-					
-					g_globalObject.setOnSelectedDelegate(function(){
-						var obj = g_globalObject.getSelectedDay();
-						document.getElementById('stdt').value=obj.year+'-'+obj.month+'-'+obj.day;
-						get_time();
-					});
-	
-		};
-	
-	</script>
+  });
+</script>
 	<script src="jquery-1.9.1.js"></script>
 	<script type="application/javascript">
 	$(function(){
@@ -86,8 +75,8 @@
 					$('#duration').val(data.items);
 					});
 			});
-	$('#stdt').on("propertychange, change, keyup, paste, input", function(){
-			alert(4);
+	$('#date').on("propertychange, change, keyup, paste, input", function(){
+			//alert(4);
 			});
 			
 		
@@ -97,8 +86,10 @@
 	<script type="application/javascript">
 	function get_time()
 	{
-		var dt=$('#stdt').val();
+		var dt=$('#date').val();
+		//alert (dt);
 		var duration=$('#duration').val();
+		//alert(duration);
 	  var flickerAPI ="http://50.56.237.229/smile/smile/phpfiles/fetch_time.php?jsoncallback=?&dt="+dt+"&dr="+duration;
 	  $.getJSON( flickerAPI, {
 	    tags: "mount rainier",
@@ -257,7 +248,7 @@
 										</div>
 										<div class="row">
 											<div class="12u">
-												<input type="text" name="stdt" id="stdt" placeholder="Choose Date" class="textbox" />
+												<input type="date" name="date" id="date" value=""  placeholder="Choose Date" class="textbox" onchange="return get_time();" />
 											</div>
 											
 										</div>
