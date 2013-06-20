@@ -147,13 +147,15 @@
 	  .done(function( data ) {
 	  
 	     var statusval=data.items;
+	     
 		 if(statusval==1)
 		 {
-		 "Thank you for appointment.";
+		 alert("Thank you for appointment.");
 		 }
 		 else
 		 {
-		  "Please try again.";
+		  alert("Please try again.");
+		  window.location.href="appointment.html";
 		 }
 		 
 	    $("#register").find(".textbox").each(function(){
@@ -260,7 +262,7 @@
 										</div>
 										<div class="row">
 											<div class="12u">
-												<input name="demo" id="demo"  placeholder="Choose Date" class="textbox" onchange="return get_time();" />
+												<input name="demo" id="demo"  placeholder="Choose Date" class="textbox" onchange="return get_time();" readonly />
 											</div>
 											
 										</div>
