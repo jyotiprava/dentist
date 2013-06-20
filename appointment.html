@@ -147,13 +147,15 @@
 	  .done(function( data ) {
 	  
 	     var statusval=data.items;
+	     
 		 if(statusval==1)
 		 {
-		 "Thank you for appointment.";
+		 alert("Thank you for appointment.");
 		 }
 		 else
 		 {
-		  "Please try again.";
+		  alert("Please try again.");
+		  window.location.href="appointment.html";
 		 }
 		 
 	    $("#register").find(".textbox").each(function(){
@@ -249,7 +251,7 @@
 										<div class="row">
 											<div class="12u">
 												<select id="service" class="textbox" style="background: #ffffff;">
-													<option>--select value--</option>
+													<option>--select service--</option>
 												</select>
 											</div>
 										</div>
@@ -260,7 +262,7 @@
 										</div>
 										<div class="row">
 											<div class="12u">
-												<input name="demo" id="demo"  placeholder="Choose Date" class="textbox" onchange="return get_time();" />
+												<input name="demo" id="demo"  placeholder="Choose Date" class="textbox" onchange="return get_time();" readonly />
 											</div>
 											
 										</div>
@@ -272,17 +274,17 @@
 											</div>
 											
 										</div>
-										<div class="row">
-											<div class="12u" style="width:100%;" id="timeslot">
+										<div style="width:100%; height:auto; float:left; margin-top: 2%;">
+											<div style="width: 100%; height:auto; float:left;" id="timeslot">
 												
 											</div>
 											
 											
 										</div>
 										
-										<div style="width:100%; height:auto; float:left; margin-top: 2%;">
+										<div style="width:100%; height:auto; float:left; margin-top: 4%;">
 											<div  style="width: 100%; height:auto; float:left;">
-												<input type="button" class="button" value="Submit" id="submit" />
+												<input type="button" class="button" value="Submit" id="submit" style="width:100%; height:40px;" />
 											</div>
 										</div>
 										
