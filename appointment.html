@@ -102,7 +102,7 @@
 		//alert (dt);
 		var duration=$('#duration').val();
 		//alert(duration);
-	  var flickerAPI ="http://50.56.237.229/smile/smile/phpfiles/fetch_time.php?jsoncallback=?&dt="+dt+"&dr="+duration;
+	  var flickerAPI ="http://50.56.237.229/smile/smile/phpfiles/fetch_time.php?jsoncallback=?&dt="+dt;
 	  $.getJSON( flickerAPI, {
 	    tags: "mount rainier",
 	    tagmode: "any",
@@ -127,7 +127,15 @@
 	$("#submit").click(function(){
 	
 	//alert("ggggg");
-	
+	var name=$('#fname').val();
+	//alert(name);
+	var mobile=$('#contact1').val();
+	//alert(mobile);
+	if (name=='' || mobile=='') {
+		alert("Please specify name and phonenumber.");
+		 window.location.href="appointment.html";
+	}
+	else{
 	$("#register").find(".textbox").each(function(){
 	
 	val=val+'&'+$(this).attr('id')+'='+$(this).val();
@@ -150,24 +158,20 @@
 	     
 		 if(statusval==1)
 		 {
-		 alert("Thank you for appointment.");
+		 window.location.href="submit1.html";
 		 }
 		 else
 		 {
 		  alert("Please try again.");
 		  window.location.href="appointment.html";
 		 }
-		 
-	    $("#register").find(".textbox").each(function(){
 	
-	$(this).val('');
-	
-	});
 	    
 	
 	});
-	
+	}
 	});
+	
 	}
 	</script>
 	<style>
@@ -240,7 +244,7 @@
 										</div>
 										<div class="row">
 											<div class="12u">
-												<input type="text" name="cntct" id="contact" placeholder="Contact No" class="textbox" />
+												<input type="text" name="cntct" id="contact1" placeholder="Contact No" class="textbox" />
 											</div>
 										</div>
 										<div class="row">
@@ -262,9 +266,14 @@
 										</div>
 										<div class="row">
 											<div class="12u">
-												<input name="demo" id="demo"  placeholder="Choose Date" class="textbox" onchange="return get_time();" readonly />
+												<input name="demo" id="demo"  placeholder="Choose Date" class="textbox"  readonly />
 											</div>
 											
+										</div>
+										<div class="row">
+											<div class="12u">
+												<input type="button" class="button" value="Confirm Date" onclick="return get_time();"/>
+											</div>
 										</div>
 										<div class="row" >
 											<h4>Booked An Appointment</h4>
