@@ -24,7 +24,7 @@ $header=$email;
 
 // Your message
 
-$message="$name.'/r/n'$fname.'/r/n'$address.'/r/n'$zipcode.'/r/n'$city.'/r/n'$phone.'/r/n'$email.'/r/n'$message1";
+$message="$name\r\n$fname\r\n$address\r\n$zipcode\r\n$city\r\n$phone\r\n$email\r\n$message1";
 
 $sentmail = mail($to,$subject,$message,$header);
 if($sentmail)
